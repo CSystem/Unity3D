@@ -26,14 +26,14 @@ public class manager : MonoBehaviour {
     private int fieldHeight;
     private Transform[] cubeReferences;
     private int[] cubePositions;
-    static manager use;
+    public static manager use = null;
     private int rowsCleared = 0;
 
 	// Use this for initialization
 	void Start () {
         //load the cubePrefab to the GameObject[] array
        // array = (GameObject[])Resources.LoadAll("prefab/");
-
+/*
         if (!use)
         {
 
@@ -45,8 +45,10 @@ public class manager : MonoBehaviour {
             return;
         
         }
+*/
 
-
+        use = this;
+        transform.position = new Vector3(0,0,0);
 
         fieldWidth = _fieldWidth + maxBlockSize * 2; //30
         fieldHeight = _fieldHeight + maxBlockSize; //18
@@ -85,19 +87,19 @@ public class manager : MonoBehaviour {
     }
 
 
-    int FieldHeight() {
+    public int FieldHeight() {
 
         return fieldHeight;
     
     }
 
-    int FieldWidth() {
+    public int FieldWidth() {
 
         return fieldWidth;
     
     }
 
-    bool CheckBlock(bool[,] blockMatrix, float xPos, float yPos) {
+    public bool CheckBlock(bool[,] blockMatrix, float xPos, float yPos) {
 
         var size = blockMatrix.GetLength(0);
 
@@ -242,7 +244,7 @@ public class manager : MonoBehaviour {
 
     }
 
-    void GameOver() {
+    public void GameOver() {
 
         Debug.Log("Game Over!");
     

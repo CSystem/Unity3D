@@ -44,10 +44,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\block_controll.cs" />
-     <Compile Include="Assets\controll_block.cs" />
-     <Compile Include="Assets\manager.cs" />
-     <Compile Include="Assets\tetris_block.cs" />
+     <Compile Include="Assets\New Folder\block_controll.cs" />
+     <Compile Include="Assets\New Folder\controll_block.cs" />
+     <Compile Include="Assets\New Folder\manager22.cs" />
+     <Compile Include="Assets\New Folder\tetris_block.cs" />
+     <Compile Include="Assets\Scripts\Block.cs" />
+     <Compile Include="Assets\Scripts\Manager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

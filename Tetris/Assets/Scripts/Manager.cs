@@ -8,8 +8,8 @@ public class Manager : MonoBehaviour {
 	public Transform leftWall;
 	public Transform rightWall;
 	public int maxBlockSize = 4;
-	public int _fieldWidth = 10;
-	public int _fieldHeight = 13;
+	public int _fieldWidth = 14;
+	public int _fieldHeight = 30;
 	public float blockNormalFallSpeed = 2f;
 	public float blockDropSpeed = 30f;
 	public Texture2D cubeTexture;
@@ -47,13 +47,13 @@ public class Manager : MonoBehaviour {
 			PlayerPrefs.SetInt("Highest", 0);
 		}
 
-
+        //change the floor color
         GameObject.Find("floor").renderer.material.color = Color.grey;
 
 		blockRandom = Random.Range(0, blocks.Length);
 		
-		fieldWidth = _fieldWidth + maxBlockSize * 2;
-		fieldHeight = _fieldHeight + maxBlockSize;
+		fieldWidth = _fieldWidth + maxBlockSize * 2;//fieldWitdh = 22
+		fieldHeight = _fieldHeight + maxBlockSize; //fieldHeight = 34
 		fields = new bool[fieldWidth, fieldHeight];
 		cubeYposition = new int[fieldHeight * fieldWidth];
 		cubeTransforms = new Transform[fieldHeight * fieldWidth];
@@ -136,7 +136,7 @@ public class Manager : MonoBehaviour {
 		for (int y = 0;y < size;y++){
 			for (int x = 0;x < size;x++){
 				if (blockMatrix[y, x]){
-					Instantiate(cube, new Vector3(xPos + x, yPos - y, 0), Quaternion.identity);
+					Instantiate(cube, new Vector3(xPos + x, yPos - y, 7.0f), Quaternion.identity);
 					fields[xPos + x, yPos - y] = true;
 				}
 			}
@@ -215,11 +215,14 @@ public class Manager : MonoBehaviour {
 	}
 	
 	void OnGUI(){
+        //draw the score use GUI
 		GUI.Label(new Rect(180, 30, 80, 40),"Score:");
 		GUI.Label(new Rect(240, 30, 100, 40),Score.ToString());
 		GUI.Label(new Rect(180, 50, 80, 40),"Highest:");
 		GUI.Label(new Rect(240, 50, 80, 40),Highest.ToString());
 		
+
+        //draw the nextBlock use the GUI.Button
 		for (int y = 0;y < nextSize;y++){
 			for (int x = 0;x < nextSize;x++){
 				if (nextblock[y][x] == '1'){

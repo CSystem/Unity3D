@@ -7,20 +7,21 @@ public class Block : MonoBehaviour {
 	
 	private bool[,] blockMatrix;
 	
-	private int size;
-	private float halfSize;
-	private float halfSizeFloat;
-	private float childSize;
+	private int size;               //block length
+	private float halfSize;         //halfsize of block
+   	private float halfSizeFloat;    //float halfSize of block  
+	private float childSize;        
 	private int xPosition;
 	private int yPosition;
-	private float fallSpeed;
-	private bool drop = false;
-    private Vector3 lwallPos;
-    private Vector3 rwallPos;
+	private float fallSpeed;        //drop speed
+	private bool drop = false;      //if dropping
+    private Vector3 lwallPos;       //leftWall position
+    private Vector3 rwallPos;       //rightWall position
 
 	// Use this for initialization
 	void Start () {
 
+        //intialize the lwallPos and rwallPos value
         lwallPos = GameObject.Find("lwall").transform.position;
         rwallPos = GameObject.Find("rwall").transform.position;
 
@@ -48,15 +49,25 @@ public class Block : MonoBehaviour {
 		halfSize = (size + 1) * .5f;
 		childSize = (size - 1) * .5f;
 		halfSizeFloat = size * .5f;
-		
+        
+        //printf the size halfsize  childsize halfsizeFloat
+        Debug.Log("size = " + size);
+        Debug.Log("halfSize = " + halfSize);
+        Debug.Log("childSize = " + childSize);
+        Debug.Log("halfSizeFloat = " + halfSizeFloat);
 		blockMatrix = new bool[size, size];
 		for(int y=0;y<size;y++){
 			for(int x=0;x<size;x++){
+
+                //block string  100 110 010
 				if (block[y][x] == '1'){
 				
+                    //To Do
 					blockMatrix[y, x] = true;
-			    	//var cube = (Transform)Instantiate(Manager.manager.cube, new Vector3(x - childSize, childSize - y, 0), Quaternion.identity);
-                    var cube = (Transform)Instantiate(Manager.manager.cube, new Vector3(10.0f, 30.0f , 5.0f), Quaternion.identity);
+
+                    //place the cube around to the center cube to build a block 
+			    	var cube = (Transform)Instantiate(Manager.manager.cube, new Vector3(x - childSize, childSize - y, 7.0f), Quaternion.identity);
+                   // var cube = (Transform)Instantiate(Manager.manager.cube, new Vector3(10.0f, 10.0f , 5.0f), Quaternion.identity);
 			    	cube.parent = transform;
 					
 				}
@@ -64,7 +75,10 @@ public class Block : MonoBehaviour {
 		}
 		
 		yPosition = Manager.manager.GetFieldHeight() - 1;
-		transform.position = new Vector3( Manager.manager.GetFieldWidth() / 2 + (size % 2 == 0 ? 0.5f : 0), yPosition - childSize, 5.0f);
+
+        //set the position of the block
+		//transform.position = new Vector3( Manager.manager.GetFieldWidth() / 2 + (size % 2 == 0 ? 0.5f : 0), yPosition - childSize, 5.0f);
+        transform.position = new Vector3(10.0f, yPosition - childSize, 7.0f);
 		xPosition = (int)(transform.position.x - childSize);
 		fallSpeed = Manager.manager.blockNormalFallSpeed;
 		

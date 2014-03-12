@@ -37,6 +37,8 @@
 "Assets/New Folder/manager22.cs"
 "Assets/New Folder/tetris_block.cs"
 Assets/Scripts/Block.cs
+Assets/Scripts/GameOver.cs
 Assets/Scripts/Manager.cs
+Assets/Scripts/StartGame.cs
 -r:"D:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Runtime.Serialization.dll"
 -r:"D:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Xml.Linq.dll"

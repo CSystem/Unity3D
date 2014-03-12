@@ -32,6 +32,8 @@
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_WIN
 -define:UNITY_TEAM_LICENSE
+"Assets/New Folder/Block_old.cs"
+"Assets/New Folder/Manager_old.cs"
 "Assets/New Folder/block_controll.cs"
 "Assets/New Folder/controll_block.cs"
 "Assets/New Folder/manager22.cs"

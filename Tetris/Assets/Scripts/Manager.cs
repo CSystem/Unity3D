@@ -8,8 +8,8 @@ public class Manager : MonoBehaviour {
 	public Transform leftWall;
 	public Transform rightWall;
 	public int maxBlockSize = 4;
-	public int _fieldWidth = 14;
-	public int _fieldHeight = 30;
+	public int _fieldWidth = 10;
+	public int _fieldHeight = 13;
 	public float blockNormalFallSpeed = 2f;
 	public float blockDropSpeed = 30f;
 	public Texture2D cubeTexture;
@@ -52,8 +52,13 @@ public class Manager : MonoBehaviour {
 
 		blockRandom = Random.Range(0, blocks.Length);
 		
+        //2D view use this so We don't need  _fieldWidth + maxBlockSize 
 		fieldWidth = _fieldWidth + maxBlockSize * 2;//fieldWitdh = 22
 		fieldHeight = _fieldHeight + maxBlockSize; //fieldHeight = 34
+
+        //fieldWidth = _fieldWidth;
+        //fieldHeight = _fieldHeight;
+
 		fields = new bool[fieldWidth, fieldHeight];
 		cubeYposition = new int[fieldHeight * fieldWidth];
 		cubeTransforms = new Transform[fieldHeight * fieldWidth];
@@ -141,7 +146,21 @@ public class Manager : MonoBehaviour {
 				}
 			}
 		}
-		StartCoroutine(CheckRows(yPos - size, size));
+
+        for (int i = 0; i < fieldWidth; i++) {
+            for (int j = 0; j < fieldHeight; j++) {
+
+                if (fields[i, j]) {
+                    Debug.Log("x = " + i + "y = " + j );
+                
+                }
+            
+            }
+        
+        }
+            
+
+            StartCoroutine(CheckRows(yPos - size, size));
 		
 	}
 	
@@ -216,20 +235,23 @@ public class Manager : MonoBehaviour {
 	
 	void OnGUI(){
         //draw the score use GUI
-		GUI.Label(new Rect(180, 30, 80, 40),"Score:");
-		GUI.Label(new Rect(240, 30, 100, 40),Score.ToString());
-		GUI.Label(new Rect(180, 50, 80, 40),"Highest:");
-		GUI.Label(new Rect(240, 50, 80, 40),Highest.ToString());
+		GUI.Label(new Rect(20, 30, 80, 40),"Score:");
+		GUI.Label(new Rect(80, 30, 100, 40),Score.ToString());
+		GUI.Label(new Rect(20, 50, 80, 40),"Highest:");
+		GUI.Label(new Rect(80, 50, 80, 40),Highest.ToString());
 		
-
+        
         //draw the nextBlock use the GUI.Button
 		for (int y = 0;y < nextSize;y++){
 			for (int x = 0;x < nextSize;x++){
 				if (nextblock[y][x] == '1'){
-					GUI.Button(new Rect(180 + 30 * x, 100 + 30 * y, 30, 30), cubeTexture);
+					GUI.Button(new Rect(20 + 30 * x, 100 + 30 * y, 30, 30), cubeTexture);
 				}
 			}
 		}
-	}
+	
+        
+          
+         }
 	
 }

@@ -22,8 +22,11 @@ public class Block : MonoBehaviour {
 	void Start () {
 
         //intialize the lwallPos and rwallPos value
-        lwallPos = GameObject.Find("lwall").transform.position;
-        rwallPos = GameObject.Find("rwall").transform.position;
+        //lwallPos = GameObject.Find("lwall").transform.position;
+        //rwallPos = GameObject.Find("rwall").transform.position;
+
+       // GameObject.Find("lwall").transform.position = new Vector3();
+
 
 		size = block.Length;
 		int width = block[0].Length;
@@ -46,8 +49,9 @@ public class Block : MonoBehaviour {
 		     }
 	    }
 		
-		halfSize = (size + 1) * .5f;
-		childSize = (size - 1) * .5f;
+		//halfSize = (size + 1) * .5f;
+        halfSize = (size + 1 )* .5f;
+        childSize = (size - 1) * .5f;
 		halfSizeFloat = size * .5f;
         
         //printf the size halfsize  childsize halfsizeFloat
@@ -67,6 +71,8 @@ public class Block : MonoBehaviour {
 
                     //place the cube around to the center cube to build a block 
 			    	var cube = (Transform)Instantiate(Manager.manager.cube, new Vector3(x - childSize, childSize - y, 7.0f), Quaternion.identity);
+                    
+                    cube.name = "Cube";
                    // var cube = (Transform)Instantiate(Manager.manager.cube, new Vector3(10.0f, 10.0f , 5.0f), Quaternion.identity);
 			    	cube.parent = transform;
 					
@@ -77,8 +83,8 @@ public class Block : MonoBehaviour {
 		yPosition = Manager.manager.GetFieldHeight() - 1;
 
         //set the position of the block
-		//transform.position = new Vector3( Manager.manager.GetFieldWidth() / 2 + (size % 2 == 0 ? 0.5f : 0), yPosition - childSize, 5.0f);
-        transform.position = new Vector3(10.0f, yPosition - childSize, 7.0f);
+		transform.position = new Vector3( Manager.manager.GetFieldWidth() / 2 + (size % 2 == 0 ? 0.5f : 0.0f), yPosition - childSize, 7.0f);
+        //transform.position = new Vector3(30.0f, yPosition - childSize, 7.0f);
 		xPosition = (int)(transform.position.x - childSize);
 		fallSpeed = Manager.manager.blockNormalFallSpeed;
 		
@@ -86,7 +92,7 @@ public class Block : MonoBehaviour {
 			Manager.manager.GameOver();
 			return;
 		}
-		
+        //Start a Coroutine program
 		StartCoroutine(CheckInput());
 		StartCoroutine(Delay((1 / Manager.manager.blockNormalFallSpeed) * 2));
 		StartCoroutine(Fall());
